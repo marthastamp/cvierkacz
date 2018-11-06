@@ -1,11 +1,12 @@
 <h1> list of all messages </h1>
-
+ <%=link_to 'New message', {:action => 'new' } %>
 <ul>
     <% @messages.each do |message| %>
         <li>
-            <%=message.content %>
+            <%=link_to message.content,	message %>
             <%=link_to 'Show', message %>
             <%=link_to 'Delete', message, method: :delete %>
+            <%=link_to 'Edit', {:action => "edit", :id => message.id}  %>
         </li>
     <% end %>
 <ul>

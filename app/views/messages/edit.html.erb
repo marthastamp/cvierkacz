@@ -1,0 +1,11 @@
+<h1>Edit Message</h1>
+
+<%= form_for @message, :url =>{:action => "update", :id =>@message} do |messages| %>
+
+<p>Author: <%= messages.text_field 'author' %></p>
+<p>Content: <%= messages.text_field  'content' %></p>
+
+<%= messages.submit "Save changes" %>
+<% end %>
+
+<%= link_to 'Back', {:action => 'index' } %>

@@ -1,0 +1,24 @@
+<h3>Create a Message</h3>
+<%#= form_with model: @messages do |message| %>
+  <%#= form.text_field :author , placeholder: "author" %>
+  <%#= form.text_field :content, placeholder: "content" %>
+
+  <%#= form.submit %>
+<%# end %>
+
+
+<h1>Create a Message</h1>
+
+<%= form_tag :action => 'create' do %>
+
+<p><label for = "author">Author</label>:
+<%= text_field 'message', 'author' %></p>
+
+<p><label for = "content">Message</label>:
+<%= text_field 'message', 'content' %></p>
+
+<%= submit_tag "Create" %>
+
+<% end -%>
+
+<%= link_to 'list of all messages', messages_path %>
