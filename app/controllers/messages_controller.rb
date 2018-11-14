@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+    
+before_action :authenticate_user!
 
     def index
        @messages = Message.all
@@ -42,6 +44,6 @@ class MessagesController < ApplicationController
 
     private 
     def message_params
-        params.require(:message).permit(:content, :author)
+        params.require(:message).permit(:content).merge(user_id: current_user.id)
     end
 end
