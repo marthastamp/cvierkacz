@@ -1,20 +1,32 @@
-<% if message.errors.any? %>
-   <div id="error_explanation">
-     <ul>
-       <% message.errors.full_messages.each do |error_msg| %>
-         <li><%= error_msg %></li>
-       <% end %>
-     </ul>
-   </div>
- <% end %>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-10">
 
- <%= form_for(message) do |form| %>
-   <div class="field">
-     <%= form.label :content %>
-     <%= form.text_field :content %>
-   </div>
+      <% if message.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% message.errors.full_messages.each do |error_msg| %>
+          <li>
+            <%= error_msg %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
 
-   <div class="actions">
-     <%= form.submit "Submit" %>
-   </div>
- <% end %>
+      <%= form_for(message) do |form| %>
+      <div class="form-group ">
+        <%= form.label :content %>
+        <%= form.text_field :content, class: 'form-control'  %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Submit", class: 'btn btn-success' %>
+      
+      </div>
+
+ <%= link_to "Back", :back %>
+      <% end %>
+    </div>
+  </div>
+</div>

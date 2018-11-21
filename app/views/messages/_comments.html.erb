@@ -1,7 +1,21 @@
-<p>
-   <strong>Content:</strong>
-   <%= comment.content %>
-   <%= link_to 'Show', comment %>
-   <%= link_to 'Edit', edit_comment_path %>
-   <%= link_to 'Delete', comment, method: :delete %>
- </p>
+<div class="container">
+  <li class="comment user-comment">
+    <div class="info">
+      <a>
+       <strong><%= comment.user.email %></strong> 
+       </a>
+      <span> <small> Updated: <%=  comment.updated_at.in_time_zone("CET").strftime("%F %T") %> </small></span>
+    </div>
+
+    <p>
+      <%= comment.content %>
+    </p>
+    <p>
+      <%= link_to 'Show', comment %>
+      <%= link_to 'Edit', edit_comment_path(comment.id) %>
+      <%= link_to 'Delete', comment, method: :delete %>
+
+    </p>
+  </li>
+  <hr class="my-4">
+</div>

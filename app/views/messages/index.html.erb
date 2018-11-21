@@ -1,15 +1,36 @@
-<h1> list of all messages </h1>
-<%= link_to 'New message', new_message_path %>
-<ul>
-    <% @messages.each do |message| %>
-        <li>
-           <%# <%=link_to message.content,	message %>
-            <%= message.content %>
-            <%=link_to 'Show', message %>
-            <%# <%=link_to 'Edit', {:action => "edit", :id => message.id}  %> 
-            <%=link_to 'Edit', edit_message_path(message.id)  %>
-            <%=link_to 'Delete', message, method: :delete %>
-           
-        </li>
-    <% end %>
-<ul>
+<h1 class="text-center"> List of all messages </h1>
+
+<div class="text-center">
+   <%= link_to 'New message', new_message_path, class: 'btn btn-success btn-lg ' %>
+</div>
+
+<div class="container mt-4">
+
+   <div class="card-columns">
+
+      <% @messages.each do |message| %>
+      <div class="card  bg-light mb-3">
+
+         <div class="card-body text-left">
+            <blockquote class="blockquote mb-0">
+               <%= message.content %>
+               <footer class="blockquote-footer text-right">
+                  <%= message.user.email %>
+                  <p class="card-text"><small class="text-muted"> Last updated <%=  message.updated_at.in_time_zone("CET").strftime("%F %T") %></small></p>
+               </footer>
+            </blockquote>
+         </div>
+
+
+         <div class="text-center">
+            <div class="btn-group">
+               <%=link_to 'Show', message, class: 'btn btn-outline-primary btn-sm' %>
+               <%=link_to 'Edit',  edit_message_path(message.id) , class: 'btn btn-outline-secondary btn-sm' %>
+               <%=link_to 'Delete', message, class: 'btn btn-outline-danger btn-sm', method: :delete %>
+            </div>
+         </div>
+
+      </div>
+      <% end %>
+   </div>
+</div>

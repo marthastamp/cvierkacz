@@ -1,3 +1,7 @@
+
+
+<div class="container mt-4">
+
 <% if comment.errors.any? %>
   <div id="error_explanation">
     <ul>
@@ -10,14 +14,14 @@
 
 <%= form_for(comment) do |form| %>
   <%= form.hidden_field :message_id, value: message.id %>
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
+  <div class="col-sm-11 form-group" >
+    <%= form.text_area :content , class: 'form-control' %>
   </div>
-
 
 
   <div class="actions">
-    <%= form.submit "Submit" %>
+    <%= form.submit "Submit", class: 'btn btn-success'  %>
   </div>
 <% end %>
+
+</div>
