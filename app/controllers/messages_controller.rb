@@ -2,8 +2,12 @@ class MessagesController < ApplicationController
     
 before_action :authenticate_user!
 
+
     def index
        @messages = Message.all
+    #    obj	=	Message.new(Date.new(2018,	9,	10))
+    #    car	=	MessagePresenter.new(obj)
+    #    car.publication_status
     end
 
     def show

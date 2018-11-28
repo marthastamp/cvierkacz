@@ -8,7 +8,8 @@
 
    <div class="card-columns">
 
-      <% @messages.each do |message| %>
+      <% @messages.each do |m| %>
+      <% present(m) do |message| %>
       <div class="card  bg-light mb-3">
 
          <div class="card-body text-left">
@@ -16,7 +17,7 @@
                <%= message.content %>
                <footer class="blockquote-footer text-right">
                   <%= message.user.email %>
-                  <p class="card-text"><small class="text-muted"> Last updated <%=  message.updated_at.in_time_zone("CET").strftime("%F %T") %></small></p>
+                  <p class="card-text"><small class="text-muted"> Published on: <%=  message.publication_date%></small></p>
                </footer>
             </blockquote>
          </div>
@@ -32,5 +33,6 @@
 
       </div>
       <% end %>
+       <% end %>
    </div>
 </div>
