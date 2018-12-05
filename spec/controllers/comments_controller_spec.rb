@@ -71,18 +71,18 @@ RSpec.describe CommentsController, type: :controller do
       end
 
 
-      describe '#destroy' do
-        let(:comment) { Comment.create(content: 'test1', user_id: user.id, message_id: message.id )}
-        subject { delete :destroy, params: { id: comment.id } }
+      # describe '#destroy' do
+      #   let(:comment) { Comment.create(content: 'test1', user_id: user.id, message_id: message.id )}
+      #   subject { delete :destroy, params: { id: comment.id } }
       
-        it 'should redirect to comments index' do
-          expect(subject).to redirect_to(comments_path)
-        end
+      #   it 'should redirect to comments index' do
+      #     expect(subject).to redirect_to(comments_path)
+      #   end
       
-        it 'should destroy comment' do
-          message
-          expect { subject }.to change{ Comment.count }.by(-1)
-        end
-      end
+      #   it 'should destroy comment' do
+      #     message
+      #     expect { subject }.to change{ Comment.count }.by(-1)
+      #   end
+      # end
 
 end
