@@ -4,10 +4,7 @@ before_action :authenticate_user!
 
 
     def index
-       @messages = Message.all
-    #    obj	=	Message.new(Date.new(2018,	9,	10))
-    #    car	=	MessagePresenter.new(obj)
-    #    car.publication_status
+       @messages = Message.all.page(params[:page])
     end
 
     def show
@@ -16,6 +13,7 @@ before_action :authenticate_user!
 
     def destroy
         @message= Message.find(params[:id])
+        authorize(@message)
         @message.destroy
         redirect_to messages_path
     end
@@ -26,6 +24,8 @@ before_action :authenticate_user!
 
     def create
         @message = Message.new(message_params)
+        @message.image.attach(params[:message][:image])
+        
         if @message.save
             redirect_to @message
         else
@@ -35,10 +35,12 @@ before_action :authenticate_user!
 
     def edit
         @message = Message.find(params[:id])
+        authorize(@message)
     end
 
     def update      
         @message = Message.find(params[:id])
+        authorize(@message)
         if @message.update(message_params)
             redirect_to @message
         else
@@ -48,6 +50,6 @@ before_action :authenticate_user!
 
     private 
     def message_params
-        params.require(:message).permit(:content).merge(user_id: current_user.id)
+        params.require(:message).permit(:content, images: []).merge(user_id: current_user.id)
     end
 end

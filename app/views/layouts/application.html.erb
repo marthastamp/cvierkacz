@@ -31,8 +31,12 @@
     <% if user_signed_in? %>
       <span>
         Logged in as
+        <% if current_user.avatar.attached? %>
+       <%= image_tag current_user.avatar.variant(resize: "50x50") %>
+        <% end %>
         <strong><%= current_user.email %></strong>.
       </span>
+      <%= link_to "Edit", edit_user_registration_path, class: 'btn ml-2' %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-outline-warning ml-2' %>
     <% else %>
       <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-outline-success my-2 my-sm-0 mr-2' %>
