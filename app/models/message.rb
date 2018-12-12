@@ -6,5 +6,5 @@ class Message < ApplicationRecord
 
   has_many_attached :image
   
-  paginates_per 3
+  paginates_per 6
 end
