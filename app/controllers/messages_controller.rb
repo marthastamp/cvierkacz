@@ -40,6 +40,7 @@ before_action :authenticate_user!
 
     def update      
         @message = Message.find(params[:id])
+        @message.image.attach(params[:message][:image])
         authorize(@message)
         if @message.update(message_params)
             redirect_to @message
